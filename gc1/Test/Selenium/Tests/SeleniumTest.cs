@@ -1,23 +1,21 @@
 ﻿using gc1.Test.Selenium.BaseTests;
-using gc1.Test.Selenium.PageObjects.GainCapital;
+using gc1.Test.Selenium.PageObjects.Google;
 using NUnit.Framework;
 
 namespace gc1.Test.Selenium.Tests
 {
     class SeleniumTest : BaseTest
     {
-        [Test]
-        public void SeleniumTest1()
+        [Test, Parallelizable]
+        public void SearchForAppleKeywordTest()
         {
-            string searchKeyword = "New Accounts Associate";
+            const string searchKeyword = "apple";
 
-            MainPage gcMainPage = StartNavigation();
-            CareersPage careersPage = gcMainPage.ClickCareers();
-            CurrentVacanciesPage currentVacancies = careersPage
-                .ClickJobOportunitiesButton()
-                .ClickViewAllPositionsLink();
-            currentVacancies.DoSearch(searchKeyword);
-            Assert.AreEqual(5, currentVacancies.GetCurrentPageResultsCount(), "Wrong vacancies search results count!");
+            GoogleHomePage googleMainPage = StartNavigation();
+            SearchResultsPage searchResultsPage = googleMainPage.SearchFor(searchKeyword);
+            SearchResultTargetWebPage searchResultTargetWebPage = searchResultsPage.ClickFirstSearchResult();
+            Assert.True(searchResultTargetWebPage.IsPageLoaded());           
+
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
 
 namespace gc1.Test.Selenium.PageObjects
 {
@@ -39,33 +38,6 @@ namespace gc1.Test.Selenium.PageObjects
                 js.ExecuteScript("arguments[0].click();", element);
             }
         }
-
-        protected string GetElementText(By locator)
-        {
-            return driver.FindElement(locator).Text;
-        }
-
-        protected void WaitForNumerOfTabsOpened(int expectedTabsCount)
-        {
-            try
-            {
-                wait.Until((driver) =>
-                {
-                    IList<string> tabs = new List<string>(driver.WindowHandles);
-                    if (tabs.Count.Equals(expectedTabsCount))
-                    {
-                        Console.WriteLine("Current number of opened tabs is: {0}", tabs.Count);
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                });
-            } catch (WebDriverTimeoutException e)
-            {
-                throw new WebDriverTimeoutException("Timed out when waiting for expected number of tabs opened!");
-            }
-        }
+        
     }
 }

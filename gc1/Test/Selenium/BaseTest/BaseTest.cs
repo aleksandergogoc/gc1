@@ -1,4 +1,4 @@
-using gc1.Test.Selenium.PageObjects.GainCapital;
+using gc1.Test.Selenium.PageObjects.Google;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -8,7 +8,7 @@ namespace gc1.Test.Selenium.BaseTests
     public class BaseTest
     {
         protected IWebDriver driver;
-        private const string gcUrl = "https://www.gaincapital.com/";
+        private const string testUrl = "https://www.google.com/";
 
         [SetUp]
         public void Setup()
@@ -24,10 +24,10 @@ namespace gc1.Test.Selenium.BaseTests
             driver.Dispose();
         }
 
-        protected MainPage StartNavigation()
+        protected GoogleHomePage StartNavigation()
         {
-            driver.Url = gcUrl;
-            return new MainPage(driver);
+            driver.Url = testUrl;
+            return new GoogleHomePage(driver);
         }
     }
 }
